@@ -11,7 +11,7 @@ st.set_page_config(
 
 **Streamlit-Survey** is a Python package for incorporating surveys and structured feedback into [Streamlit](https://streamlit.io) apps.
 
-It can be used in combination with [Trubrics](https://github.com/trubrics/trubrics-sdk) to collect feedback on datasets, models, and machine learning apps.
+It can be used with [Trubrics](https://github.com/trubrics/trubrics-sdk) to collect feedback on datasets, models, and machine learning apps.
 
 ## Installation
 
