@@ -2,6 +2,10 @@
    :alt: Lifecycle: experimental
    :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
+.. image:: https://img.shields.io/badge/docs-streamlit-brightgreen
+   :alt: Documentation on Streamlit
+   :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
+
 **Streamlit-Survey**: Survey components for Streamlit apps
 ==========================================================
 
