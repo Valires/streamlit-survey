@@ -8,9 +8,12 @@ streamlit-survey
 
 **Streamlit-Survey**: survey components for Streamlit apps
 
-## Read the docs: 
+Read the docs:
+--------------
 
-[Streamlit-Survey Documentation](https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app)
+`Streamlit-Survey Documentation <https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app>`_
 
 .. image:: streamlit-survey-screenshot.png
+        :width: 400
+        :align: center
         :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
