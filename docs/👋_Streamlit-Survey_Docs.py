@@ -59,8 +59,9 @@ with st.echo(code_location='above'):
 
 Survey components are similar to Streamlit inputs, but they have additional features that make them suitable for surveys:
 
-- Component labels and values are automatically stored in a dictionary within Streamlit's SessionState object.
-- Survey state can be saved to and loaded from JSON files.
+- Questions and responses are automatically saved.
+- Component states and previous responses are automatically restored and displayed based on survey data.
+- Survey can be saved to and loaded from JSON files.
 - Custom survey components can be created for more complex input UI and functionality.
 
 

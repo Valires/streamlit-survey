@@ -32,6 +32,17 @@ Components can be added to the survey using functions similar to Streamlit's inp
         :align: center
         :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
+Features
+--------
+
+Survey components are similar to Streamlit inputs, but they have additional features that make them suitable for surveys:
+
+- Questions and responses are automatically saved.
+- Component states and previous responses are automatically restored and displayed based on survey data.
+- Survey can be saved to and loaded from JSON files.
+- Custom survey components can be created for more complex input UI and functionality.
+
+
 
 Read the docs:
 --------------
