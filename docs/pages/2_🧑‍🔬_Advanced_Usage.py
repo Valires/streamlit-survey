@@ -9,7 +9,7 @@ st.set_page_config(
 """
 # Advanced Usage
 
-**Streamlit-Survey** surpports conditional survey structures and survey state restoration.
+**Streamlit-Survey** supports conditional survey structures and survey state restoration.
 
 ## Conditional Survey Structures
 
