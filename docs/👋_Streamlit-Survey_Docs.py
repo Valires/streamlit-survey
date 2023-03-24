@@ -62,6 +62,13 @@ Survey components are similar to Streamlit inputs, but they have additional feat
 - Component labels and values are automatically stored in a dictionary within Streamlit's SessionState object.
 - Survey state can be saved to and loaded from JSON files.
 - Custom survey components can be created for more complex input UI and functionality.
+
+
+## Learn More
+
+- [Survey Components Documentation](https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app/~/+/Survey_Components)
+- [Advanced Usage](https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app/~/+/Advanced_Usage)
+
 """
 
 
