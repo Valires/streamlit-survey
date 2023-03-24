@@ -1,33 +1,54 @@
+"""
+Copyright 2023 Olivier Binette
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
 from collections import defaultdict
 import streamlit as st
 import json
 from streamlit_survey.survey_component import (
-    Thumbs,
-    Faces,
     TextInput,
     TextArea,
-    MultiChoice,
+    MultiSelect,
     SelectBox,
     Radio,
     Slider,
     CheckBox,
     DateInput,
     TimeInput,
+    NumberInput,
 )
 
 
 class StreamlitSurvey:
     DEFAULT_DATA_NAME = "__streamlit-survey-data"
 
-    def __init__(self, data=None, auto_id=True):
+    def __init__(self, label="", data=None, auto_id=True):
         if data is None:
-            if self.DEFAULT_DATA_NAME not in st.session_state:
-                st.session_state[self.DEFAULT_DATA_NAME] = {}
-            data = st.session_state[self.DEFAULT_DATA_NAME]
+            self.data_name = self.DEFAULT_DATA_NAME + "_" + label
+            if self.data_name not in st.session_state:
+                st.session_state[self.data_name] = {}
+            data = st.session_state[self.data_name]
 
+        self.label = label
         self.auto_id = auto_id
-        self.id_counter = 0
         self.data = data
+
+        self.components = []
+
+    def add_component(self, component):
+        self.components.append(component)
 
     def log(self, id, key, value):
         if id not in self.data:
@@ -43,8 +64,7 @@ class StreamlitSurvey:
 
     def create_id(self, label):
         if self.auto_id:
-            self.id_counter += 1
-            return f"Q{self.id_counter}"
+            return f"Q{len(self.components)+1}"
         else:
             return label
 
@@ -53,13 +73,8 @@ class StreamlitSurvey:
 
     def from_json(self, path):
         with open(path, "r") as f:
-            self.data = json.load(f)
-
-    def thumbs(self, label="", id=None, **kwargs):
-        return Thumbs(self, label, id, **kwargs).display()
-
-    def faces(self, label="", id=None, **kwargs):
-        return Faces(self, label, id, **kwargs).display()
+            self.data.clear()
+            self.data.update(json.load(f))
 
     def text_input(self, label="", id=None, **kwargs):
         return TextInput(self, label, id, **kwargs).display()
@@ -67,8 +82,11 @@ class StreamlitSurvey:
     def text_area(self, label="", id=None, **kwargs):
         return TextArea(self, label, id, **kwargs).display()
 
-    def multichoice(self, label="", id=None, **kwargs):
-        return MultiChoice(self, label, id, **kwargs).display()
+    def number_input(self, label="", id=None, **kwargs):
+        return NumberInput(self, label, id, **kwargs).display()
+
+    def multiselect(self, label="", id=None, **kwargs):
+        return MultiSelect(self, label, id, **kwargs).display()
 
     def selectbox(self, label="", id=None, **kwargs):
         return SelectBox(self, label, id, **kwargs).display()

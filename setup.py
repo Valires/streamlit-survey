@@ -10,9 +10,7 @@ with open("README.rst") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
-requirements = [
-    "streamlit"
-]
+requirements = ["streamlit"]
 
 test_requirements = [
     "pytest>=3",
@@ -25,7 +23,7 @@ setup(
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: GNU Affero General Public License v3 (AGPLv3)",
+        "License :: OSI Approved :: Apache License 2.0 (Apache-2.0)",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
@@ -34,7 +32,7 @@ setup(
     ],
     description="Survey components for Streamlit apps",
     install_requires=requirements,
-    license="GNU General Public License v3",
+    license="Apache License 2.0 (Apache-2.0)",
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="streamlit_survey",
