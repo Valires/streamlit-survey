@@ -1,7 +1,7 @@
 from collections import defaultdict
 import streamlit as st
 import json
-from survey_component import (
+from streamlit_survey.survey_component import (
     Thumbs,
     Faces,
     TextInput,
@@ -21,9 +21,9 @@ class StreamlitSurvey:
 
     def __init__(self, data=None, auto_id=True):
         if data is None:
-            if StreamlitSurvey.DEFAULT_DATA_NAME not in st.session_state:
-                st.session_state[StreamlitSurvey.DEFAULT_DATA_NAME] = {}
-            data = st.session_state[StreamlitSurvey.DEFAULT_DATA_NAME]
+            if self.DEFAULT_DATA_NAME not in st.session_state:
+                st.session_state[self.DEFAULT_DATA_NAME] = {}
+            data = st.session_state[self.DEFAULT_DATA_NAME]
 
         self.auto_id = auto_id
         self.id_counter = 0
