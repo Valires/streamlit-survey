@@ -1,20 +1,16 @@
-.. image:: https://img.shields.io/pypi/v/streamlit_survey.svg
-        :target: https://pypi.python.org/pypi/streamlit_survey
-
-
 **Streamlit-Survey**: survey components for Streamlit apps
 ==========================================================
 
-**Streamlit-Survey** is a Python package for incorporating surveys and structured feedback into [Streamlit](https://streamlit.io) apps.
+**Streamlit-Survey** is a Python package for incorporating surveys and structured feedback into `Streamlit <https://streamlit.io>`_ apps.
 
-It can be used in combination with [Trubrics](https://github.com/trubrics/trubrics-sdk) to collect feedback on datasets, models, and machine learning apps.
+It can be used in combination with `Trubrics <https://github.com/trubrics/trubrics-sdk>`_ to collect feedback on datasets, models, and machine learning apps.
 
 Installation
 ------------
 
-Streamlit-Survey can be installed using `pip`::
+Streamlit-Survey can be installed from Github::
 
-        pip install streamlit-survey
+        pip install git+https://github.com/OlivierBinette/streamlit-survey.git
 
 Usage
 -----
@@ -22,9 +18,9 @@ Usage
 The `streamlit_survey` package contains a `StreamlitSurvey` class that can be used to create and manage survey components::
 
         with st.echo():
-        import streamlit_survey as ss
+                import streamlit_survey as ss
 
-        survey = ss.StreamlitSurvey("Example 1")
+                survey = ss.StreamlitSurvey("Example 1")
 
 Components can be added to the survey using functions similar to Streamlit's input functions:
 

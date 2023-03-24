@@ -15,9 +15,9 @@ It can be used in combination with [Trubrics](https://github.com/trubrics/trubri
 
 ## Installation
 
-Streamlit-Survey can be installed using `pip`:
+Streamlit-Survey can be installed from Github:
 ```
-pip install streamlit-survey
+pip install git+https://github.com/OlivierBinette/streamlit-survey.git
 ```
 
 ## Usage
