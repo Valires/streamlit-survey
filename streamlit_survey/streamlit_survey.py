@@ -69,7 +69,7 @@ class StreamlitSurvey:
             return label
 
     def to_json(self):
-        return json.dumps(self.data)
+        return json.dumps(self.data, default=str)
 
     def from_json(self, path):
         with open(path, "r") as f:

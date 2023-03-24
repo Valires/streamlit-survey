@@ -52,7 +52,7 @@ class SurveyComponent(ABC):
         return self.get_value()
 
     @classmethod
-    def from_st_input(cls, Class, serializer=lambda x: x):
+    def from_st_input(cls, Class):
         class StreamlitInput(SurveyComponent):
             def register(self):                
                 if "key" not in self.kwargs:
@@ -62,7 +62,7 @@ class SurveyComponent(ABC):
                     st.session_state[self.kwargs["key"]] = self.get_value()
                 
                 value = Class(label=self.label, **self.kwargs)
-                self.log_value(serializer(value))
+                self.log_value(value)
 
         return StreamlitInput
 
@@ -74,5 +74,5 @@ SelectBox = SurveyComponent.from_st_input(st.selectbox)
 Radio = SurveyComponent.from_st_input(st.radio)
 Slider = SurveyComponent.from_st_input(st.slider)
 CheckBox = SurveyComponent.from_st_input(st.checkbox)
-DateInput = SurveyComponent.from_st_input(st.date_input, serializer=str)
-TimeInput = SurveyComponent.from_st_input(st.time_input, serializer=str)
+DateInput = SurveyComponent.from_st_input(st.date_input)
+TimeInput = SurveyComponent.from_st_input(st.time_input)

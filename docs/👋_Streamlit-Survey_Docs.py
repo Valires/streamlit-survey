@@ -28,7 +28,7 @@ The `streamlit_survey` package contains a `StreamlitSurvey` class that can be us
 with st.echo():
     import streamlit_survey as ss
 
-    survey = ss.StreamlitSurvey("Example 1")
+    survey = ss.StreamlitSurvey()
 
 """
 Components can be added to the survey using functions similar to Streamlit's input functions:

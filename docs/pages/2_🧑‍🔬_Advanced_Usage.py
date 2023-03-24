@@ -20,7 +20,7 @@ The simplest way to create a condition is to query the value of a survey compone
 
 with st.expander("Code Example", expanded=True):
     with st.echo(code_location='below'):
-        survey = ss.StreamlitSurvey()
+        survey = ss.StreamlitSurvey("Survey 1")
         Q1 = survey.radio("Thumbs up/down:", options=['NA', "👍", "👎"], horizontal=True, id="Q1")
         if Q1 == '👍':
             Q1_1 = survey.text_input("Why did you select '👍'?", id="Q1_1")
