@@ -2,7 +2,7 @@
    :alt: Lifecycle: experimental
    :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
-.. image:: https://img.shields.io/badge/docs-streamlit-brightgreen
+.. image:: https://img.shields.io/badge/docs-Streamlit-brightgreen
    :alt: Documentation on Streamlit
    :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
