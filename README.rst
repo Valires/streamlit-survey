@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/Lifecycle-Experimental-339999
    :alt: Lifecycle: experimental
+   :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
 **Streamlit-Survey**: Survey components for Streamlit apps
 ==========================================================
