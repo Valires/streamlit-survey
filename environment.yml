@@ -1,0 +1,9 @@
+name: streamlit-survey
+
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - streamlit
+    - black
+    - git+https://github.com/OlivierBinette/streamlit-survey.git
