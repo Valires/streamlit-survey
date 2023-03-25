@@ -19,7 +19,7 @@ This page gives examples of the survey components available in the `streamlit_su
 The `StreamlitSurvey` class is the main entry point for survey components. It is used to create and manage survey components, store their state, and save the survey data to a JSON file.
 """
 with st.echo(code_location="below"):
-    survey = ss.StreamlitSurvey()
+    survey = ss.StreamlitSurvey("Survey Example")
 
 """
 Most Streamlit inputs have corresponding survey elements. For example, the `st.text_input` function has a corresponding `survey.text_input` function. The survey elements are used in the same way as the Streamlit inputs, but they have an additional `id` parameter. The `id` parameter is used to identify the survey element and store its state. If the `id` parameter is not specified, the survey element will be assigned a unique ID automatically.
