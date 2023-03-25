@@ -45,95 +45,54 @@ class StreamlitSurvey:
 
     Survey questions and answers are stored in a JSON file that is automatically saved in the Streamlit session state. This means that you can save the survey data and reload it later. You can create conditional surveys to ask different questions based on the answers to previous questions. Answers to previous questions are always preserved, even if the user goes back to a previous question or if Streamlit input widgets are no longer displayed.
 
-    Attributes
-    ----------
-    data: dict
-        Dictionary containing survey questions and answers
-    data_name: str
-        Name of the JSON file where survey data is stored
-    auto_id: bool
-        Whether to automatically number survey questions
-
-    Methods
-    -------
-    text_input(label, id=None, **kwargs)
-        Create a text input widget
-    text_area(label, id=None, **kwargs)
-        Create a text area widget
-    multiselect(label, options, id=None, **kwargs)
-        Create a multiselect widget
-    selectbox(label, options, id=None, **kwargs)
-        Create a selectbox widget
-    radio(label, options, id=None, **kwargs)
-        Create a radio widget
-    slider(label, min_value, max_value, id=None, **kwargs)
-        Create a slider widget
-    checkbox(label, id=None, **kwargs)
-        Create a checkbox widget
-    date_input(label, id=None, **kwargs)
-        Create a date input widget
-    time_input(label, id=None, **kwargs)
-        Create a time input widget
-    number_input(label, id=None, **kwargs)
-        Create a number input widget
-
-    Example
+    Examples
     --------
 
     Basic functionality is similar to Streamlit's own input widgets:
 
-    ```python
-    import streamlit as st
-    from streamlit_survey import StreamlitSurvey
-
-    survey = StreamlitSurvey("My Survey")
-
-    name = survey.text_input("What is your name?")
-    age = survey.number_input("What is your age?", min_value=0, max_value=100)
-
-    if st.button("Submit"):
-        st.write(f"Hello {name}, you are {age} years old!")
-    ```
+    
+    >>> import streamlit as st
+    >>> from streamlit_survey import StreamlitSurvey
+    >>> 
+    >>> survey = StreamlitSurvey("My Survey")
+    >>> 
+    >>> name = survey.text_input("What is your name?")
+    >>> age = survey.number_input("What is your age?", min_value=0, max_value=100)
+    >>> 
+    >>> if st.button("Submit"):
+    >>>     st.write(f"Hello {name}, you are {age} years old!")
 
     However, the `survey` object keeps track of survey questions and answers for easy access and analysis. You can save and load responses to a JSON file:
 
-    ```python
-    survey.to_json("data.json)
-    survey.from_json("data.json")
-
-    # Or, if you want to load the data from a URL:
-    survey.from_json("https://example.com/data.json")
-    ```
+    >>> survey.to_json("data.json)
+    >>> survey.from_json("data.json")
+    >>> 
+    >>> # Or, if you want to load the data from a URL:
+    >>> survey.from_json("https://example.com/data.json")
 
     You can also use the `auto_id` parameter to disable automatic numbering of questions:
 
-    ```python
-    survey = StreamlitSurvey("My Survey", auto_id=False)
-    ```
+    >>> survey = StreamlitSurvey("My Survey", auto_id=False)
 
     This will allow you to use custom IDs for each question:
 
-    ```python
-    name = survey.text_input("What is your name?", id="name")
-    age = survey.number_input("What is your age?", id="age", min_value=0, max_value=100)
-    ```
+    >>> name = survey.text_input("What is your name?", id="name")
+    >>> age = survey.number_input("What is your age?", id="age", min_value=0, max_value=100)
 
     These IDs are particularly useful if you want to create conditional surveys. For example, you can ask a different question based on the answer to a previous question:
 
-    ```python
-    import streamlit as st
-    from streamlit_survey import StreamlitSurvey
-
-    survey = StreamlitSurvey("My Survey")
-
-    name = survey.text_input("What is your name?")
-    age = survey.number_input("What is your age?", min_value=0, max_value=100)
-
-    if age < 18:
-        survey.multiselect("What is your favorite color?", options=["Red", "Green", "Blue"], id="Q_color")
-    else:
-        survey.text_input("What is your job?", id="Q_job")
-    ```
+    >>> import streamlit as st
+    >>> from streamlit_survey import StreamlitSurvey
+    >>> 
+    >>> survey = StreamlitSurvey("My Survey")
+    >>> 
+    >>> name = survey.text_input("What is your name?")
+    >>> age = survey.number_input("What is your age?", min_value=0, max_value=100)
+    >>> 
+    >>> if age < 18:
+    >>>     survey.multiselect("What is your favorite color?", options=["Red", "Green", "Blue"], id="Q_color")
+    >>> else:
+    >>>     survey.text_input("What is your job?", id="Q_job")
 
     In contrast to Streamlit's own input widgets, StreamlitSurvey will always preserve the answers to previous questions, even when widgets are no longer displayed. This way, user can go back to previous questions, change their path in the survey, or even close and reopen the survey without losing their answers.
     """
