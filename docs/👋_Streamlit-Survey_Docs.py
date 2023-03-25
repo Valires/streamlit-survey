@@ -38,15 +38,15 @@ Components can be added to the survey using functions similar to Streamlit's inp
 with st.expander("Component examples", expanded=True):
     with st.echo(code_location="below"):
         # Radio buttons
-        survey.radio("Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True)
+        survey.radio("Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True, id="Q1")
 
     with st.echo(code_location="below"):
         # Likert scale
-        survey.radio("Likert scale:", options=["NA", "😞", "🙁", "😐", "🙂", "😀"], horizontal=True)
+        survey.radio("Likert scale:", options=["NA", "😞", "🙁", "😐", "🙂", "😀"], horizontal=True, id="Q2")
 
     with st.echo(code_location="below"):
         # Text input
-        survey.text_input("Text input:")
+        survey.text_input("Text input:", id="Q3")
 
 """
 The survey automatically gives each component a unique ID. Survey component labels and values are stored in the `survey.data` dictionary, which can be saved to a JSON file using the `survey.to_json` method:

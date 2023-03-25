@@ -35,6 +35,7 @@ from streamlit_survey.survey_component import (
     TextInput,
     TimeInput,
 )
+from streamlit_survey.pages import Pages
 
 PathLike = Union[str, bytes, os.PathLike]
 
@@ -110,8 +111,8 @@ class StreamlitSurvey:
         auto_id: bool
             Whether to automatically number survey questions
         """
+        self.data_name = self.DEFAULT_DATA_NAME + "_" + label
         if data is None:
-            self.data_name = self.DEFAULT_DATA_NAME + "_" + label
             if self.data_name not in st.session_state:
                 st.session_state[self.data_name] = {}
             data = st.session_state[self.data_name]
@@ -139,9 +140,43 @@ class StreamlitSurvey:
 
     def _create_id(self, label: str):
         if self.auto_id:
-            return f"Q{len(self._components)+1}"
-        else:
             return label
+        else:
+            raise RuntimeError("An ID should be explicitely provided if `auto_id` is set to False.")
+
+    def pages(self, n, on_submit=None, label: str = ""):
+        """
+        Create a pages group
+
+        Examples
+        --------
+        >>> import streamlit_survey as ss
+        >>> survey = ss.StreamlitSurvey("My Survey")
+        >>> pages = survey.pages(3)
+        >>>
+        >>> with pages:
+        >>>     if pages.current == 0:
+        >>>         name = survey.text_input("What is your name?")
+        >>>     elif pages.current == 1:
+        >>>         age = survey.number_input("What is your age?")
+        >>>     elif pages.current == 2:
+        >>>         st.write("Thank you!")
+
+        Parameters
+        ----------
+        n: int
+            Number of pages
+        on_submit: function
+            Function to call when the user submits the survey.
+        label: str
+            Label for the page group.
+
+        Returns
+        -------
+        Pages
+            Pages object
+        """
+        return Pages(n, key=self.data_name+"_pages_"+label, on_submit=on_submit)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """
