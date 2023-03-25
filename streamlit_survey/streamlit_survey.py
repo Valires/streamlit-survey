@@ -98,7 +98,7 @@ class StreamlitSurvey:
     In contrast to Streamlit's own input widgets, StreamlitSurvey will always preserve the answers to previous questions, even when widgets are no longer displayed. This way, user can go back to previous questions, change their path in the survey, or even close and reopen the survey without losing their answers.
     """
 
-    DEFAULT_DATA_NAME = "__streamlit-survey-data"
+    BASE_NAME = "__streamlit-survey-data"
 
     def __init__(self, label: str = "", data: dict = None, auto_id: bool = True):
         """
@@ -111,7 +111,7 @@ class StreamlitSurvey:
         auto_id: bool
             Whether to automatically number survey questions
         """
-        self.data_name = self.DEFAULT_DATA_NAME + "_" + label
+        self.data_name = self.BASE_NAME + "_" + label
         if data is None:
             if self.data_name not in st.session_state:
                 st.session_state[self.data_name] = {}
@@ -152,9 +152,7 @@ class StreamlitSurvey:
         --------
         >>> import streamlit_survey as ss
         >>> survey = ss.StreamlitSurvey("My Survey")
-        >>> pages = survey.pages(3)
-        >>>
-        >>> with pages:
+        >>> with survey.pages(3) as pages:
         >>>     if pages.current == 0:
         >>>         name = survey.text_input("What is your name?")
         >>>     elif pages.current == 1:
@@ -176,7 +174,7 @@ class StreamlitSurvey:
         Pages
             Pages object
         """
-        return Pages(n, key=self.data_name+"_pages_"+label, on_submit=on_submit)
+        return Pages(n, key=self.data_name+"_Pages_"+label, on_submit=on_submit)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """

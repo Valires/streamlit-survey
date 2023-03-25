@@ -50,7 +50,7 @@ class Pages(object):
         ValueError:
             If the value is out of range
         """
-        if value >= 0 and value < self.n_pages - 1:
+        if value >= 0 and value < self.n_pages:
             st.session_state[self.current_page_key] = value
         else:
             raise ValueError("Page index out of range")
@@ -70,7 +70,7 @@ class Pages(object):
             self.current += 1
 
     def __enter__(self):
-        pass
+        return self
 
     def __exit__(self, type, value, traceback):
         """
