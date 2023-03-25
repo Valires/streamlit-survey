@@ -16,15 +16,15 @@ limitations under the License.
 
 from streamlit_survey.streamlit_survey import StreamlitSurvey
 from streamlit_survey.survey_component import (
-    SurveyComponent,
-    TextInput,
-    TextArea,
-    MultiSelect,
-    SelectBox,
-    Radio,
-    Slider,
     CheckBox,
     DateInput,
+    MultiSelect,
+    Radio,
+    SelectBox,
+    Slider,
+    SurveyComponent,
+    TextArea,
+    TextInput,
     TimeInput,
 )
 

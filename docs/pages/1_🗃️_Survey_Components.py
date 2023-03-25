@@ -1,4 +1,5 @@
 import streamlit as st
+
 import streamlit_survey as ss
 
 st.set_page_config(
@@ -17,7 +18,7 @@ This page gives examples of the survey components available in the `streamlit_su
 
 The `StreamlitSurvey` class is the main entry point for survey components. It is used to create and manage survey components, store their state, and save the survey data to a JSON file.
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey = ss.StreamlitSurvey()
 
 """
@@ -29,58 +30,58 @@ Survey objects can be saved to and loaded from JSON files using the `to_json` an
 """
 ### Radio Components
 """
-with st.echo(code_location='below'):
-    survey.radio("Thumbs up/down:", options=['NA', "👍", "👎"], horizontal=True)
+with st.echo(code_location="below"):
+    survey.radio("Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True)
 
-with st.echo(code_location='below'):
-    survey.radio("Likert scale:", options=['NA', "😞", "🙁", "😐", "🙂", "😀"], horizontal=True)
+with st.echo(code_location="below"):
+    survey.radio("Likert scale:", options=["NA", "😞", "🙁", "😐", "🙂", "😀"], horizontal=True)
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.radio("Horizontal radio:", options=["Option 1", "Option 2", "Option 3", "etc"], horizontal=True)
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.radio("Vertical radio:", options=["Option 1", "Option 2", "Option 3", "etc"])
 
 """
 ### Selection Boxes
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.selectbox("Selection box:", options=["Option 1", "Option 2", "Option 3", "etc"])
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.multiselect("Multiple choice:", options=["Option 1", "Option 2", "Option 3", "etc"])
 
 """
 ### Check Box
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.checkbox("Check box")
 
 """
 ### Date and Time
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.dateinput("Date input:")
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.timeinput("Time input:")
 
 """
 ### Text Input
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.text_input("Text input:")
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     survey.text_area("Area input:")
 
 """
 ### Numerical Input
 """
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     st.number_input("Number input:", min_value=0, max_value=100, value=50)
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     st.slider("Slider:", min_value=0, max_value=100, value=50)
 
 """

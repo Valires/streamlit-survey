@@ -6,4 +6,5 @@ dependencies:
   - pip:
     - streamlit
     - black
+    - isort
     - git+https://github.com/OlivierBinette/streamlit-survey.git

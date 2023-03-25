@@ -1,4 +1,5 @@
 import streamlit as st
+
 import streamlit_survey as ss
 
 st.set_page_config(
@@ -19,10 +20,10 @@ The simplest way to create a condition is to query the value of a survey compone
 """
 
 with st.expander("Code Example", expanded=True):
-    with st.echo(code_location='below'):
+    with st.echo(code_location="below"):
         survey = ss.StreamlitSurvey("Survey 1")
-        Q1 = survey.radio("Thumbs up/down:", options=['NA', "👍", "👎"], horizontal=True, id="Q1")
-        if Q1 == '👍':
+        Q1 = survey.radio("Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True, id="Q1")
+        if Q1 == "👍":
             Q1_1 = survey.text_input("Why did you select '👍'?", id="Q1_1")
 
 """
@@ -32,16 +33,16 @@ When using conditional survey structures, we recommend manually specifying the `
 Alternatively, you can specify all questions in advance as `SurveyComponent` instances and use the `display()` function to display the question where appropriate. This separates defining questions from the display logic. For example:
 """
 with st.expander("Code Example", expanded=True):
-    with st.echo(code_location='below'):
+    with st.echo(code_location="below"):
         survey = ss.StreamlitSurvey("Survey 2")
 
         # Define questions:
-        Q1 = ss.Radio(survey, "Thumbs up/down:", options=['NA', "👍", "👎"], horizontal=True)
+        Q1 = ss.Radio(survey, "Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True)
         Q1_1 = ss.TextInput(survey, "Why did you select '👍'?")
 
         # Display logic:
         q1_value = Q1.display()
-        if q1_value == '👍':
+        if q1_value == "👍":
             Q1_1.display()
 
 """
@@ -54,7 +55,7 @@ This way, you can associate questions to user inputs, using the `id` parameter t
 Here's an example below. As long as you press "enter" to save your changes, you can go back and forth to edit your answers regarding different test case IDs.
 """
 
-with st.echo(code_location='below'):
+with st.echo(code_location="below"):
     user_input = st.number_input("Select a test case ID:", value=0, min_value=0, max_value=50)
     survey = ss.StreamlitSurvey("Survey 3")
     survey.text_input("What do you think about this test case?", id=f"Q1_{user_input}")
