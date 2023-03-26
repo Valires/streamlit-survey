@@ -77,6 +77,7 @@ class Pages(object):
         """
         Display the navigation buttons
         """
+        submitted = False
         left, _, right = st.columns([2, 4, 2])
         with left:
             st.button(
@@ -88,11 +89,10 @@ class Pages(object):
             )
         with right:
             if self.current == self.n_pages - 1 and self.on_submit is not None:
-                st.button(
+                submitted = st.button(
                     "Submit",
                     type="primary",
                     use_container_width=True,
-                    on_click=self.on_submit,
                     key=f"{self.current_page_key}_btn_submit",
                 )
             else:
@@ -104,3 +104,5 @@ class Pages(object):
                     disabled=self.current == self.n_pages - 1,
                     key=f"{self.current_page_key}_btn_next",
                 )
+        if submitted:
+            self.on_submit()

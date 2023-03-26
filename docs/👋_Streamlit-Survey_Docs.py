@@ -21,6 +21,31 @@ Streamlit-Survey can be installed from Github:
 pip install git+https://github.com/OlivierBinette/streamlit-survey.git
 ```
 
+## Example
+
+Simple paged survey example with a conditional structure and a submit button:
+"""
+with st.expander("Survey Example:", expanded=True):
+    survey = ss.StreamlitSurvey("Survey Example")
+    pages = survey.pages(2, on_submit=lambda: st.success("Your responses have been recorded. Thank you!"))
+    with pages:
+        if pages.current == 0:
+            st.write("Have you used Streamlit before?")
+            used_before = survey.radio("used_st_before", options=["NA", "Yes", "No"], index=0, label_visibility="collapsed", horizontal=True)
+
+            if used_before == "Yes":
+                st.write("How often do you use Streamlit?")
+                st.select_slider("st_frequency", options=["Every Day", "Every week", "Every Month", "Once a year", "Rarely"], label_visibility="collapsed")
+            elif used_before == "No":
+                st.write("Have you used other dashboarding tools?")
+                used_other = survey.radio("used_other", options=["NA", "Yes", "No"], index=0, label_visibility="collapsed", horizontal=True)
+                if used_other == "Yes":
+                    st.write("Which tools?")
+                    survey.multiselect("other_tools", options=["Dash", "Voila", "Panel", "Bokeh", "Plotly", "Other"], label_visibility="collapsed")
+        elif pages.current == 1:
+            st.write("How satisfied are you with this survey?")
+            survey.select_slider("Overall Satisfaction", options=["Very Unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"], label_visibility="collapsed")
+"""
 ## Usage
 
 The `streamlit_survey` package contains a `StreamlitSurvey` class that can be used to create and manage survey components:
@@ -35,6 +60,7 @@ with st.echo():
 Components can be added to the survey using functions similar to Streamlit's input functions:
 
 """
+survey = ss.StreamlitSurvey("Component Examples")
 with st.expander("Component examples", expanded=True):
     with st.echo(code_location="below"):
         # Radio buttons
@@ -42,12 +68,11 @@ with st.expander("Component examples", expanded=True):
 
     with st.echo(code_location="below"):
         # Likert scale
-        survey.radio("Likert scale:", options=["NA", "😞", "🙁", "😐", "🙂", "😀"], horizontal=True, id="Q2")
+        survey.select_slider("Likert scale:", options=["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"], id="Q2")
 
     with st.echo(code_location="below"):
         # Text input
         survey.text_input("Text input:", id="Q3")
-
 """
 The survey automatically gives each component a unique ID. Survey component labels and values are stored in the `survey.data` dictionary, which can be saved to a JSON file using the `survey.to_json` method:
 """

@@ -21,6 +21,7 @@ from streamlit_survey.survey_component import (
     MultiSelect,
     Radio,
     SelectBox,
+    SelectSlider,
     Slider,
     SurveyComponent,
     TextArea,
@@ -36,6 +37,7 @@ __all__ = [
     "MultiSelect",
     "SelectBox",
     "Radio",
+    "SelectSlider"
     "Slider",
     "CheckBox",
     "DateInput",

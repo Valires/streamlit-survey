@@ -30,6 +30,7 @@ from streamlit_survey.survey_component import (
     NumberInput,
     Radio,
     SelectBox,
+    SelectSlider,
     Slider,
     SurveyComponent,
     TextArea,
@@ -348,6 +349,28 @@ class StreamlitSurvey:
             Value of the slider
         """
         return Slider(self, label, id, **kwargs).display()
+
+
+    def select_slider(self, label: str = "", id: str = None, **kwargs) -> str:
+        """
+        Create a select slider widget
+
+        Parameters
+        ----------
+        label: str
+            Label of the widget
+        id: str
+            ID of the widget. If None, the ID will be automatically generated.
+        **kwargs
+            Additional keyword arguments passed to `st.select_slider`
+
+        Returns
+        -------
+        str
+            Selected option
+        """
+        return SelectSlider(self, label, id, **kwargs).display()
+
 
     def checkbox(self, label: str = "", id: str = None, **kwargs) -> bool:
         """
