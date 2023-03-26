@@ -20,6 +20,17 @@ Streamlit-Survey can be installed from Github::
 
         pip install git+https://github.com/OlivierBinette/streamlit-survey.git
 
+Example
+-------
+
+Simple paged survey example with a conditional structure and a submit button:
+
+.. image:: example-screenshot.png
+        :width: 500
+        :align: center
+        :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
+
+
 Usage
 -----
 
