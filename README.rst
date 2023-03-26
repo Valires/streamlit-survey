@@ -6,6 +6,11 @@
    :alt: Documentation on Streamlit
    :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
+.. image:: https://badge.fury.io/py/streamlit-survey.svg
+   :alt: Package on PyPI
+   :target: https://pypi.org/project/streamlit-survey/
+
+
 **Streamlit-Survey**: Survey components for Streamlit apps
 ==========================================================
 
@@ -16,9 +21,9 @@ It can be used with `Trubrics <https://github.com/trubrics/trubrics-sdk>`_ to co
 Installation
 ------------
 
-Streamlit-Survey can be installed from Github::
+Streamlit-Survey can be installed from PyPI::
 
-        pip install git+https://github.com/OlivierBinette/streamlit-survey.git
+        pip install streamlit-survey
 
 Example
 -------

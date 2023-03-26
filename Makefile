@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test dist help install black env
+.PHONY: clean clean-build clean-pyc clean-test dist help install black env docs
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -53,3 +53,6 @@ black:
 
 env:
 	conda env update -f environment.yml
+
+docs:
+	streamlit run docs/👋_Streamlit-Survey_Docs.py --server.fileWatcherType none
