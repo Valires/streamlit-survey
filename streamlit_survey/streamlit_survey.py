@@ -350,7 +350,6 @@ class StreamlitSurvey:
         """
         return Slider(self, label, id, **kwargs).display()
 
-
     def select_slider(self, label: str = "", id: str = None, **kwargs) -> str:
         """
         Create a select slider widget
@@ -370,7 +369,6 @@ class StreamlitSurvey:
             Selected option
         """
         return SelectSlider(self, label, id, **kwargs).display()
-
 
     def checkbox(self, label: str = "", id: str = None, **kwargs) -> bool:
         """

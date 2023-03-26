@@ -37,8 +37,7 @@ __all__ = [
     "MultiSelect",
     "SelectBox",
     "Radio",
-    "SelectSlider"
-    "Slider",
+    "SelectSlider" "Slider",
     "CheckBox",
     "DateInput",
     "TimeInput",
