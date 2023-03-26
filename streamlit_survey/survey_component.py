@@ -16,7 +16,7 @@ limitations under the License.
 
 import datetime
 from abc import ABC, abstractmethod
-from typing import Any, Optional, Callable
+from typing import Any, Callable, Optional
 
 import streamlit as st
 
@@ -46,39 +46,27 @@ class SurveyComponent(ABC):
         if id is None:
             id = survey._create_id(label)
 
-        self.label = label
         self.id = id
         self.survey = survey
         self.kwargs = kwargs
+        self.label = label
 
-        self.log_label(self.label)
         survey._add_component(self)
 
-    def log_value(self, value: Any):
-        """
-        Parameters
-        ----------
-        value: Any
-            Value to log
-        """
-        self.survey._log(self.id, "value", value)
-
-    def get_value(self) -> Any:
-        """
-        Returns
-        -------
-        Any:
-            Value of the component
-        """
+    @property
+    def value(self):
         return self.survey._get(self.id, "value")
 
-    def log_label(self, label):
-        """
-        Parameters
-        ----------
-        label: str
-            Label to log
-        """
+    @value.setter
+    def value(self, value):
+        self.survey._log(self.id, "value", value)
+
+    @property
+    def label(self):
+        return self.survey._get(self.id, "label")
+
+    @label.setter
+    def label(self, label):
         self.survey._log(self.id, "label", label)
 
     @abstractmethod
@@ -98,7 +86,7 @@ class SurveyComponent(ABC):
             Value of the component
         """
         self.register()
-        return self.get_value()
+        return self.value
 
     @classmethod
     def from_st_input(cls, Class: type, encoder: Callable = lambda x: x, decoder: Callable = lambda x: x):
@@ -124,12 +112,12 @@ class SurveyComponent(ABC):
             def register(self):
                 if "key" not in self.kwargs:
                     self.kwargs["key"] = f"{self.COMPONENT_KEY_PREFIX}_{self.survey.label}_{self.id}"
-                if self.kwargs["key"] not in st.session_state and self.get_value() is not None:
+                if self.kwargs["key"] not in st.session_state and self.value is not None:
                     # Note: Streamlit widget keys get automatically deleted from st.session_state. This restores widgets to their default value when they are no longer displayed. To get around this issue, we automatically restore widget values from the survey data when it is available.
-                    st.session_state[self.kwargs["key"]] = decoder(self.get_value())
+                    st.session_state[self.kwargs["key"]] = decoder(self.value)
 
                 value = Class(label=self.label, **self.kwargs)
-                self.log_value(encoder(value))
+                self.value = encoder(value)
 
         return StreamlitInput
 

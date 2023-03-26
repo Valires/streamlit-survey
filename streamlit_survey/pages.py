@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 class Pages(object):
     def __init__(self, n_pages, key="__Pages_curent", on_submit=None):
         """
@@ -11,7 +12,7 @@ class Pages(object):
             Key to use to store the current page in Streamlit's session state
         on_submit: Callable
             Callback to call when the user clicks the submit button
-        
+
         Example
         -------
         >>> page = Pages(2)
@@ -36,7 +37,7 @@ class Pages(object):
         if self.current_page_key not in st.session_state:
             st.session_state[self.current_page_key] = 0
         return st.session_state[self.current_page_key]
-    
+
     @current.setter
     def current(self, value):
         """
@@ -78,9 +79,28 @@ class Pages(object):
         """
         left, _, right = st.columns([2, 4, 2])
         with left:
-            st.button("Previous", use_container_width=True, disabled=self.current == 0, on_click=self.previous)
+            st.button(
+                "Previous",
+                use_container_width=True,
+                disabled=self.current == 0,
+                on_click=self.previous,
+                key=f"{self.current_page_key}_btn_prev",
+            )
         with right:
             if self.current == self.n_pages - 1 and self.on_submit is not None:
-                st.button("Submit", type="primary", use_container_width=True, on_click=self.on_submit)
+                st.button(
+                    "Submit",
+                    type="primary",
+                    use_container_width=True,
+                    on_click=self.on_submit,
+                    key=f"{self.current_page_key}_btn_submit",
+                )
             else:
-                st.button("Next", type="primary", use_container_width=True, on_click=self.next, disabled=self.current == self.n_pages - 1)
+                st.button(
+                    "Next",
+                    type="primary",
+                    use_container_width=True,
+                    on_click=self.next,
+                    disabled=self.current == self.n_pages - 1,
+                    key=f"{self.current_page_key}_btn_next",
+                )

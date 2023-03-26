@@ -22,6 +22,7 @@ from typing import Any, Hashable, List, Optional, Union
 
 import streamlit as st
 
+from streamlit_survey.pages import Pages
 from streamlit_survey.survey_component import (
     CheckBox,
     DateInput,
@@ -35,7 +36,6 @@ from streamlit_survey.survey_component import (
     TextInput,
     TimeInput,
 )
-from streamlit_survey.pages import Pages
 
 PathLike = Union[str, bytes, os.PathLike]
 
@@ -51,15 +51,15 @@ class StreamlitSurvey:
 
     Basic functionality is similar to Streamlit's own input widgets:
 
-    
+
     >>> import streamlit as st
     >>> from streamlit_survey import StreamlitSurvey
-    >>> 
+    >>>
     >>> survey = StreamlitSurvey("My Survey")
-    >>> 
+    >>>
     >>> name = survey.text_input("What is your name?")
     >>> age = survey.number_input("What is your age?", min_value=0, max_value=100)
-    >>> 
+    >>>
     >>> if st.button("Submit"):
     >>>     st.write(f"Hello {name}, you are {age} years old!")
 
@@ -67,7 +67,7 @@ class StreamlitSurvey:
 
     >>> survey.to_json("data.json)
     >>> survey.from_json("data.json")
-    >>> 
+    >>>
     >>> # Or, if you want to load the data from a URL:
     >>> survey.from_json("https://example.com/data.json")
 
@@ -84,12 +84,12 @@ class StreamlitSurvey:
 
     >>> import streamlit as st
     >>> from streamlit_survey import StreamlitSurvey
-    >>> 
+    >>>
     >>> survey = StreamlitSurvey("My Survey")
-    >>> 
+    >>>
     >>> name = survey.text_input("What is your name?")
     >>> age = survey.number_input("What is your age?", min_value=0, max_value=100)
-    >>> 
+    >>>
     >>> if age < 18:
     >>>     survey.multiselect("What is your favorite color?", options=["Red", "Green", "Blue"], id="Q_color")
     >>> else:
@@ -174,7 +174,7 @@ class StreamlitSurvey:
         Pages
             Pages object
         """
-        return Pages(n, key=self.data_name+"_Pages_"+label, on_submit=on_submit)
+        return Pages(n, key=self.data_name + "_Pages_" + label, on_submit=on_submit)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """
