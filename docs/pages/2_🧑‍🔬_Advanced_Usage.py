@@ -78,7 +78,7 @@ with st.expander("Code Example:", expanded=True):
                 )
                 if used_before == "Yes":
                     st.write("How often do you use Streamlit?")
-                    st.select_slider(
+                    survey.select_slider(
                         "st_frequency",
                         options=["Every Day", "Every week", "Every Month", "Once a year", "Rarely"],
                         label_visibility="collapsed",
