@@ -62,6 +62,7 @@ class SurveyComponent(ABC):
 
     @key.setter
     def key(self, key):
+        self.kwargs["key"] = key
         self.survey._log(self.id, "widget_key", key)
 
     @property
