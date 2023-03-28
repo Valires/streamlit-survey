@@ -79,10 +79,6 @@ Components can be added to the survey using functions similar to Streamlit's inp
 survey = ss.StreamlitSurvey("Component Examples")
 with st.expander("Component examples", expanded=True):
     with st.echo(code_location="below"):
-        # Radio buttons
-        survey.radio("Thumbs up/down:", options=["NA", "👍", "👎"], horizontal=True, id="Q1")
-
-    with st.echo(code_location="below"):
         # Likert scale
         survey.select_slider(
             "Likert scale:", options=["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"], id="Q2"
