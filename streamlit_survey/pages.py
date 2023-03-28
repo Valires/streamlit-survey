@@ -1,12 +1,12 @@
 import streamlit as st
-
+from typing import Union
 
 class Pages(object):
-    def __init__(self, n_pages, key="__Pages_curent", on_submit=None):
+    def __init__(self, labels: Union[int, list], key="__Pages_curent", on_submit=None):
         """
         Parameters
         ----------
-        n_pages: int
+        labels: int
             Number of pages
         key: str
             Key to use to store the current page in Streamlit's session state
@@ -22,7 +22,10 @@ class Pages(object):
         >>>     if page.current == 1:
         >>>         st.text_input("Phone number:", id="phone")
         """
-        self.n_pages = n_pages
+        if isinstance(labels, int):
+            labels = list(range(labels))
+        self.n_pages = len(labels)
+        self.labels = labels
         self.current_page_key = key
         self.on_submit = on_submit
 
@@ -55,6 +58,10 @@ class Pages(object):
             st.session_state[self.current_page_key] = value
         else:
             raise ValueError("Page index out of range")
+
+    @property
+    def label(self):
+        return self.labels[self.current]
 
     def previous(self):
         """

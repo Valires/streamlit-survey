@@ -50,8 +50,19 @@ class SurveyComponent(ABC):
         self.survey = survey
         self.kwargs = kwargs
         self.label = label
+        if "key" not in self.kwargs:
+            self.kwargs["key"] = f"{self.COMPONENT_KEY_PREFIX}_{self.survey.label}_{self.id}"
+        self.key = self.kwargs["key"]
 
         survey._add_component(self)
+
+    @property
+    def key(self):
+        return self.survey._get(self.id, "widget_key")
+
+    @key.setter
+    def key(self, key):
+        self.survey._log(self.id, "widget_key", key)
 
     @property
     def value(self):
@@ -110,12 +121,10 @@ class SurveyComponent(ABC):
 
         class StreamlitInput(SurveyComponent):
             def register(self):
-                if "key" not in self.kwargs:
-                    self.kwargs["key"] = f"{self.COMPONENT_KEY_PREFIX}_{self.survey.label}_{self.id}"
-                if self.kwargs["key"] not in st.session_state and self.value is not None:
+                if self.key not in st.session_state and self.value is not None:
                     # Note: Streamlit widget keys get automatically deleted from st.session_state. This restores widgets to their default value when they are no longer displayed. To get around this issue, we automatically restore widget values from the survey data when it is available.
-                    st.session_state[self.kwargs["key"]] = decoder(self.value)
-
+                    st.session_state[self.key] = decoder(self.value)
+                
                 value = Class(label=self.label, **self.kwargs)
                 self.value = encoder(value)
 

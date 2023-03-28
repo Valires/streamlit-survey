@@ -145,7 +145,7 @@ class StreamlitSurvey:
         else:
             raise RuntimeError("An ID should be explicitely provided if `auto_id` is set to False.")
 
-    def pages(self, n, on_submit=None, label: str = ""):
+    def pages(self, index: Union[int, list], on_submit=None, label: str = ""):
         """
         Create a pages group
 
@@ -163,8 +163,8 @@ class StreamlitSurvey:
 
         Parameters
         ----------
-        n: int
-            Number of pages
+        index: Union[int, list]
+            Number of pages or list of page names
         on_submit: function
             Function to call when the user submits the survey.
         label: str
@@ -175,7 +175,7 @@ class StreamlitSurvey:
         Pages
             Pages object
         """
-        return Pages(n, key=self.data_name + "_Pages_" + label, on_submit=on_submit)
+        return Pages(index, key=self.data_name + "_Pages_" + label, on_submit=on_submit)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """
@@ -197,6 +197,43 @@ class StreamlitSurvey:
             with open(path, "w") as f:
                 json.dump(self.data, f)
 
+    def importer(self, label: str = "", **kwargs):
+        """
+        Import survey data from a JSON file using a widget
+
+        Parameters
+        ----------
+        label: str
+            Label of the widget
+        """
+        if "key" in kwargs:
+            file_key = kwargs["key"]
+        else:
+            file_key = self.BASE_NAME+"_file_"+label
+
+        def load_json():
+            file = st.session_state[file_key]
+            if file is None:
+                return
+            self.from_file(file)
+
+        file = st.file_uploader(label, type="json", key=file_key, on_change=load_json)
+        return file
+
+    def download_button(self, label: str = "", file_name="survey.json"):
+        """
+        Download survey data as a JSON file using a widget
+
+        Parameters
+        ----------
+        label: str
+            Label of the widget
+        file_name: str
+            Name of the downloaded file
+        """
+        download = st.download_button(label, data=self.to_json(), file_name=file_name)
+        return download
+
     def from_json(self, path: PathLike):
         """
         Load survey data from a JSON file
@@ -207,8 +244,25 @@ class StreamlitSurvey:
             Path to the JSON file. Can also be a URL.
         """
         with open(path, "r") as f:
-            self.data.clear()
-            self.data.update(json.load(f))
+            self.from_file(f)
+    
+    def from_file(self, file):
+        """
+        Load survey data from a JSON file
+        
+        Parameters
+        ----------
+        file: file
+            File object containing the JSON data
+        """
+        # Update survey data
+        self.data.clear()
+        self.data.update(json.load(file))
+
+        # Update displayed Streamlit widgets values
+        for _, data in self.data.items():
+            if "widget_key" in data and data["widget_key"] in st.session_state:
+                st.session_state[data["widget_key"]] = data["value"]
 
     def text_input(self, label: str = "", id: str = None, **kwargs) -> str:
         """
