@@ -29,6 +29,17 @@ class Pages(object):
         self.current_page_key = key
         self.on_submit = on_submit
 
+    def update(self, value):
+        """
+        Update current page index value.
+
+        Parameters
+        ----------
+        value: int
+            Page index.
+        """
+        self.current = value
+    
     @property
     def current(self):
         """
