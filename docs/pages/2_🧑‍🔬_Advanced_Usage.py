@@ -67,14 +67,18 @@ Survey components can be grouped into pages using the `Pages` class. The `Pages`
 """
 
 with st.expander("Code Example:", expanded=True):
-    with st.echo(code_location='below'):
+    with st.echo(code_location="below"):
         survey = ss.StreamlitSurvey("Survey Example - Advanced Usage")
         pages = survey.pages(2, on_submit=lambda: st.success("Your responses have been recorded. Thank you!"))
         with pages:
             if pages.current == 0:
                 st.write("Have you used Streamlit before?")
                 used_before = survey.radio(
-                    "used_st_before", options=["NA", "Yes", "No"], index=0, label_visibility="collapsed", horizontal=True
+                    "used_st_before",
+                    options=["NA", "Yes", "No"],
+                    index=0,
+                    label_visibility="collapsed",
+                    horizontal=True,
                 )
                 if used_before == "Yes":
                     st.write("How often do you use Streamlit?")
@@ -86,7 +90,11 @@ with st.expander("Code Example:", expanded=True):
                 elif used_before == "No":
                     st.write("Have you used other dashboarding tools?")
                     used_other = survey.radio(
-                        "used_other", options=["NA", "Yes", "No"], index=0, label_visibility="collapsed", horizontal=True
+                        "used_other",
+                        options=["NA", "Yes", "No"],
+                        index=0,
+                        label_visibility="collapsed",
+                        horizontal=True,
                     )
                     if used_other == "Yes":
                         st.write("Which tools?")
