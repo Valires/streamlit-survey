@@ -35,6 +35,12 @@ Simple paged survey example with a conditional structure and a submit button:
         :align: center
         :target: https://olivierbinette-streamlit-surv-docs-streamlit-survey-docs-hu1jf8.streamlit.app
 
+Error auditing toy example for machine learning applications:
+
+.. image:: error-analysis-screenshot.png
+        :width: 400
+        :align: center
+        :target: https://olivierbinette-streamli-docsstandaloneerror-analysis-app-ksc1h7.streamlit.app/
 
 Usage
 -----
@@ -63,7 +69,6 @@ Survey components are similar to Streamlit inputs, but they have additional feat
 - Custom survey components can be created for more complex input UI and functionality.
 
 
-
 Read the docs:
 --------------
 
@@ -72,4 +77,4 @@ Read the docs:
 License
 -------
 
-* Apache 2.0
+* Commons Clause + Apache 2.0
