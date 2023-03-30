@@ -32,7 +32,7 @@ setup(
     ],
     description="Survey components for Streamlit apps",
     install_requires=requirements,
-    license="Apache License 2.0 (Apache-2.0)",
+    license="Commons Clause + Apache License 2.0",
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="streamlit_survey",

@@ -61,8 +61,16 @@ with st.expander("Survey Example:", expanded=True):
                 options=["Very Unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"],
                 label_visibility="collapsed",
             )
+
 """
-## Usage
+## In-Depth Example
+
+Error auditing for machine learning applications:
+
+- https://olivierbinette-streamli-docsstandaloneerror-analysis-app-ksc1h7.streamlit.app/
+
+
+## Usage Overview
 
 The `streamlit_survey` package contains a `StreamlitSurvey` class that can be used to create and manage survey components:
 """

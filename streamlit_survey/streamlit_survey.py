@@ -209,7 +209,7 @@ class StreamlitSurvey:
         if "key" in kwargs:
             file_key = kwargs["key"]
         else:
-            file_key = self.BASE_NAME+"_file_"+label
+            file_key = self.BASE_NAME + "_file_" + label
 
         def load_json():
             file = st.session_state[file_key]
@@ -217,10 +217,10 @@ class StreamlitSurvey:
                 return
             self.from_file(file)
 
-        file = st.file_uploader(label, type="json", key=file_key, on_change=load_json)
+        file = st.file_uploader(label, type="json", key=file_key, on_change=load_json, **kwargs)
         return file
 
-    def download_button(self, label: str = "", file_name="survey.json"):
+    def download_button(self, label: str = "", file_name="survey.json", **kwargs):
         """
         Download survey data as a JSON file using a widget
 
@@ -231,7 +231,7 @@ class StreamlitSurvey:
         file_name: str
             Name of the downloaded file
         """
-        download = st.download_button(label, data=self.to_json(), file_name=file_name)
+        download = st.download_button(label, data=self.to_json(), file_name=file_name, **kwargs)
         return download
 
     def from_json(self, path: PathLike):
@@ -245,11 +245,11 @@ class StreamlitSurvey:
         """
         with open(path, "r") as f:
             self.from_file(f)
-    
+
     def from_file(self, file):
         """
         Load survey data from a JSON file
-        
+
         Parameters
         ----------
         file: file

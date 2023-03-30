@@ -1,8 +1,10 @@
-import streamlit as st
 from typing import Union
 
+import streamlit as st
+
+
 class Pages(object):
-    def __init__(self, labels: Union[int, list], key="__Pages_curent", on_submit=None):
+    def __init__(self, labels: Union[int, list], key="__Pages_curent", on_submit=None, progress_bar=True):
         """
         Parameters
         ----------
@@ -28,6 +30,7 @@ class Pages(object):
         self.labels = labels
         self.current_page_key = key
         self.on_submit = on_submit
+        self.progress_bar = progress_bar
 
     def update(self, value):
         """
@@ -39,7 +42,7 @@ class Pages(object):
             Page index.
         """
         self.current = value
-    
+
     @property
     def current(self):
         """
@@ -122,5 +125,7 @@ class Pages(object):
                     disabled=self.current == self.n_pages - 1,
                     key=f"{self.current_page_key}_btn_next",
                 )
+        if self.progress_bar:
+            st.progress(self.current / (self.n_pages-1))
         if submitted:
             self.on_submit()
