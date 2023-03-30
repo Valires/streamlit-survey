@@ -37,7 +37,7 @@ Simple paged survey example with a conditional structure and a submit button:
 
 Error auditing toy example for machine learning applications:
 
-.. image:: error-analysis-screenshot.png
+.. image:: error-auditing-screenshot.png
         :width: 400
         :align: center
         :target: https://olivierbinette-streamli-docsstandaloneerror-analysis-app-ksc1h7.streamlit.app/
