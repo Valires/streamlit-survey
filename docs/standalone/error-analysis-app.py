@@ -5,7 +5,7 @@ import streamlit_survey as ss
 """
 # Error Auditing in Machine Learning
 
-This app is a simple demo of [Streamlit-Survey](https://github.com/Valires/streamlit-survey) to carry out error analysis of a toy digit recognition model.
+This app is a simple demo of [Streamlit-Survey](https://github.com/Valires/streamlit-survey) to carry out error auditing of a toy digit recognition model.
 """
 
 st.info(
