@@ -101,7 +101,7 @@ class StreamlitSurvey:
 
     BASE_NAME = "__streamlit-survey-data"
 
-    def __init__(self, label: str = "", data: dict = None, auto_id: bool = True):
+    def __init__(self, label: str = "", data: dict = None, auto_id: bool = True, disable_next: bool = False):
         """
         Parameters
         ----------
@@ -111,6 +111,8 @@ class StreamlitSurvey:
             Dictionary containing survey questions and answers
         auto_id: bool
             Whether to automatically number survey questions
+        disable_next: bool
+            Whether to have the "Next" button disabled by default
         """
         self.data_name = self.BASE_NAME + "_" + label
         if data is None:
@@ -121,6 +123,7 @@ class StreamlitSurvey:
         self.label = label
         self.auto_id = auto_id
         self.data = data
+        self.disable_next = disable_next
 
         self._components = []  # Active (currently displayed) survey components
 
@@ -175,7 +178,7 @@ class StreamlitSurvey:
         Pages
             Pages object
         """
-        return Pages(index, key=self.data_name + "_Pages_" + label, on_submit=on_submit)
+        return Pages(index, key=self.data_name + "_Pages_" + label, on_submit=on_submit, disable_next=self.disable_next)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """

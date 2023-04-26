@@ -4,7 +4,9 @@ import streamlit as st
 
 
 class Pages(object):
-    def __init__(self, labels: Union[int, list], key="__Pages_curent", on_submit=None, progress_bar=True):
+    def __init__(self, labels: Union[int, list], key="__Pages_curent",
+                 on_submit=None, progress_bar=True,
+                 disable_next: bool = False):
         """
         Parameters
         ----------
@@ -14,6 +16,8 @@ class Pages(object):
             Key to use to store the current page in Streamlit's session state
         on_submit: Callable
             Callback to call when the user clicks the submit button
+        disable_next: bool
+            Whether to have the "Next" button disabled by default
 
         Example
         -------
@@ -31,6 +35,7 @@ class Pages(object):
         self.current_page_key = key
         self.on_submit = on_submit
         self.progress_bar = progress_bar
+        self.disable_next = disable_next
 
     def update(self, value):
         """
@@ -122,7 +127,7 @@ class Pages(object):
                     type="primary",
                     use_container_width=True,
                     on_click=self.next,
-                    disabled=self.current == self.n_pages - 1,
+                    disabled=self.current == self.n_pages - 1 or self.disable_next,
                     key=f"{self.current_page_key}_btn_next",
                 )
         if self.progress_bar:
