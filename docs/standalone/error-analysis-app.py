@@ -1,5 +1,6 @@
 import ml_project as mp
 import streamlit as st
+
 import streamlit_survey as ss
 
 """
@@ -15,6 +16,7 @@ st.info(
 
 with st.echo(code_location="below"):
     import ml_project as mp
+
     import streamlit_survey as ss
 
     survey = ss.StreamlitSurvey()
@@ -51,7 +53,6 @@ with st.echo(code_location="below"):
                     "Error severity", options=["Minor", "Moderate", "Severe"], id=f"severity_{page.current}"
                 )
         survey.text_area("Notes", id=f"notes_{page.current}")
-
 
     """#### 4. Export or import survey data"""
     survey.download_button("Export Survey Data", use_container_width=True)

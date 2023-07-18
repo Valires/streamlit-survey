@@ -110,3 +110,31 @@ with st.expander("Code Example:", expanded=True):
                     options=["Very Unsatisfied", "Unsatisfied", "Neutral", "Satisfied", "Very Satisfied"],
                     label_visibility="collapsed",
                 )
+
+"""
+### Customizing Buttons
+
+You can customize the "previous", "next", and "submit" page navigation buttons using the `previous_button`, `next_button`, and `submit_button` properties of the Pages instance.
+
+Here's an example, with the `Submit` button translated to French and the "previous" button removed.
+"""
+
+with st.expander("Code Example:", expanded=True):
+    with st.echo(code_location="below"):
+        survey = ss.StreamlitSurvey("Survey Example 2 - Advanced Usage")
+        pages = survey.pages(1, on_submit=lambda: st.success("Your responses have been recorded. Thank you!"))
+
+        # Button customization
+        pages.submit_button = lambda pages: st.button("Soumettre", type="primary", use_container_width=True)
+        pages.prev_button = lambda pages: None
+
+        with pages:
+            if pages.current == 0:
+                st.write("Have you used Streamlit before?")
+                used_before = survey.radio(
+                    "used_st_before",
+                    options=["NA", "Yes", "No"],
+                    index=0,
+                    label_visibility="collapsed",
+                    horizontal=True,
+                )
