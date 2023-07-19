@@ -7,4 +7,4 @@ dependencies:
     - streamlit
     - black
     - isort
-    - git+https://github.com/OlivierBinette/streamlit-survey.git
+    - git+https://github.com/Valires/streamlit-survey.git
