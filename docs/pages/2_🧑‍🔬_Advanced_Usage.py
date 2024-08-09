@@ -12,6 +12,23 @@ st.set_page_config(
 
 **Streamlit-Survey** supports conditional survey structures and survey state restoration.
 
+## Show Progress Bar
+
+Use `progress_bar=True` as an argument to `survey.pages()` to show a progress bar.
+"""
+with st.expander("Code Example", expanded=True):
+    with st.echo(code_location="below"):
+        survey = ss.StreamlitSurvey("Progress Bar Example")
+        pages = survey.pages(3, progress_bar=True, on_submit=lambda: st.success("Submitted!"))
+        with pages:
+            if pages.current == 0:
+                st.write("Page one.")
+            elif pages.current == 1:
+                st.write("Page two.")
+            elif pages.current == 2:
+                st.write("Page three.")
+
+"""
 ## Conditional Survey Structures
 
 Conditional survey structures can be used to create surveys with branching logic. The survey components can be grouped into sections, which can be shown or hidden based on the values of other components.
@@ -116,17 +133,18 @@ with st.expander("Code Example:", expanded=True):
 
 You can customize the "previous", "next", and "submit" page navigation buttons using the `previous_button`, `next_button`, and `submit_button` properties of the Pages instance.
 
-Here's an example, with the `Submit` button translated to French and the "previous" button removed.
+Here's an example, with buttons translated to French. JSON survey data is shown on submit.
 """
 
 with st.expander("Code Example:", expanded=True):
     with st.echo(code_location="below"):
         survey = ss.StreamlitSurvey("Survey Example 2 - Advanced Usage")
-        pages = survey.pages(1, on_submit=lambda: st.success("Your responses have been recorded. Thank you!"))
+        pages = survey.pages(2, on_submit=lambda: st.json(survey.to_json()))
 
         # Button customization
-        pages.submit_button = lambda pages: st.button("Soumettre", type="primary", use_container_width=True)
-        pages.prev_button = lambda pages: None
+        pages.submit_button = pages.default_btn_submit("Soumettre")
+        pages.prev_button = pages.default_btn_previous("Retour")
+        pages.next_button = pages.default_btn_next("Prochain")
 
         with pages:
             if pages.current == 0:
@@ -138,3 +156,6 @@ with st.expander("Code Example:", expanded=True):
                     label_visibility="collapsed",
                     horizontal=True,
                 )
+            if pages.current == 1:
+                st.write("This is the last question.")
+                acknowledge = survey.checkbox("Acknowledge")

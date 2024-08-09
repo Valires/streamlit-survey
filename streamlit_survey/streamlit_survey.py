@@ -145,7 +145,7 @@ class StreamlitSurvey:
         else:
             raise RuntimeError("An ID should be explicitely provided if `auto_id` is set to False.")
 
-    def pages(self, index: Union[int, list], on_submit=None, label: str = ""):
+    def pages(self, index: Union[int, list], on_submit=None, progress_bar=False, label: str = ""):
         """
         Create a pages group
 
@@ -167,6 +167,8 @@ class StreamlitSurvey:
             Number of pages or list of page names
         on_submit: function
             Function to call when the user submits the survey.
+        progress_bar: bool
+            Whether to show a progress bar under the pages group. Default to False.
         label: str
             Label for the page group.
 
@@ -175,7 +177,7 @@ class StreamlitSurvey:
         Pages
             Pages object
         """
-        return Pages(index, key=self.data_name + "_Pages_" + label, on_submit=on_submit)
+        return Pages(index, key=self.data_name + "_Pages_" + label, on_submit=on_submit, progress_bar=progress_bar)
 
     def to_json(self, path: Optional[PathLike] = None) -> Optional[str]:
         """

@@ -12,10 +12,6 @@ with open("HISTORY.rst") as history_file:
 
 requirements = ["streamlit>=1.18.0"]
 
-test_requirements = [
-    "pytest>=3",
-]
-
 setup(
     author="Olivier Binette",
     author_email="olivier.binette@gmail.com",
@@ -38,9 +34,7 @@ setup(
     keywords="streamlit_survey",
     name="streamlit_survey",
     packages=find_packages(include=["streamlit_survey", "streamlit_survey.*"]),
-    test_suite="tests",
-    tests_require=test_requirements,
     url="https://github.com/OlivierBinette/streamlit_survey",
-    version="0.1.0",
+    version="1.0.0",
     zip_safe=False,
 )
