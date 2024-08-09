@@ -4,37 +4,32 @@ import streamlit as st
 
 
 class Pages(object):
-    DEFAULT_PREV_BUTTON = lambda pages: st.button(
-        "Previous",
-        use_container_width=True,
-        disabled=pages.current == 0,
-        on_click=pages.previous,
-        key=f"{pages.current_page_key}_btn_prev",
-    )
 
-    DEFAULT_NEXT_BUTTON = lambda pages: st.button(
-        "Next",
-        type="primary",
-        use_container_width=True,
-        on_click=pages.next,
-        disabled=pages.current == pages.n_pages - 1,
-        key=f"{pages.current_page_key}_btn_next",
-    )
+    @staticmethod
+    def default_btn_previous(label="Previous"):
+        return lambda pages: st.button(
+            label,
+            use_container_width=True,
+            on_click=pages.previous,
+            disabled=pages.current == 0,
+            key=f"{pages.current_page_key}_btn_prev",
+        )
 
-    DEFAULT_SUBMIT_BUTTON = lambda pages: st.button(
-        "Submit",
-        type="primary",
-        use_container_width=True,
-        key=f"{pages.current_page_key}_btn_submit",
-    )
+    @staticmethod
+    def default_btn_next(label="Next"):
+        return lambda pages: st.button(
+            label,
+            use_container_width=True,
+            on_click=pages.next,
+            disabled=pages.current == pages.n_pages - 1,
+            key=f"{pages.current_page_key}_btn_next",
+        )
 
-    def __init__(
-        self,
-        labels: Union[int, list],
-        key="__Pages_curent",
-        on_submit=None,
-        progress_bar=True
-    ):
+    @staticmethod
+    def default_btn_submit(label="Submit"):
+        return lambda pages: st.button(label, use_container_width=True, key=f"{pages.current_page_key}_btn_next")
+
+    def __init__(self, labels: Union[int, list], key="__Pages_curent", on_submit=None, progress_bar=False):
         """
         Parameters
         ----------
@@ -44,6 +39,8 @@ class Pages(object):
             Key to use to store the current page in Streamlit's session state
         on_submit: Callable
             Callback to call when the user clicks the submit button
+        progress_bar: bool
+            Whether to show a progress bar under the survey buttons. Default is False.
 
         Example
         -------
@@ -62,9 +59,9 @@ class Pages(object):
         self.on_submit = on_submit
         self.progress_bar = progress_bar
 
-        self._prev_btn = Pages.DEFAULT_PREV_BUTTON
-        self._next_btn = Pages.DEFAULT_NEXT_BUTTON
-        self._submit_btn = Pages.DEFAULT_SUBMIT_BUTTON
+        self._prev_btn = Pages.default_btn_previous()
+        self._next_btn = Pages.default_btn_next()
+        self._submit_btn = Pages.default_btn_submit()
 
     def update(self, value):
         """
@@ -135,7 +132,7 @@ class Pages(object):
     @prev_button.setter
     def prev_button(self, func):
         """
-        Set "previous" button for page navigation.
+        Set "previous" button for page navigation. Use the `key_btn_prev()` method to create the button's key string.
 
         Parameters
         ----------
@@ -143,7 +140,7 @@ class Pages(object):
             Function taking one argument (the current page instance) and returning the "previous" button for page navigation.
         """
         self._prev_btn = func
-    
+
     @property
     def next_button(self):
         """
@@ -154,7 +151,7 @@ class Pages(object):
     @next_button.setter
     def next_button(self, func):
         """
-        Set "next" button for page navigation.
+        Set "next" button for page navigation. Use the `key_btn_next()` method to create the button's key string.
 
         Parameters
         ----------
@@ -162,7 +159,7 @@ class Pages(object):
             Function taking one argument (the current page instance) and returning the "next" button for page navigation.
         """
         self._next_btn = func
-    
+
     @property
     def submit_button(self):
         """
@@ -173,7 +170,7 @@ class Pages(object):
     @submit_button.setter
     def submit_button(self, func):
         """
-        Set "submit" button for page navigation.
+        Set "submit" button for page navigation. Use the `key_btn_submit()` method to create the button's key string.
 
         Parameters
         ----------

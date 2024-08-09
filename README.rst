@@ -67,6 +67,7 @@ Survey components are similar to Streamlit inputs, but they have additional feat
 - Component states and previous responses are automatically restored and displayed based on survey data.
 - Survey can be saved to and loaded from JSON files.
 - Custom survey components can be created for more complex input UI and functionality.
+- Customizable paging and option to show a progress bar.
 
 
 Read the docs:
