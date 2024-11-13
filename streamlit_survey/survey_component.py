@@ -20,10 +20,10 @@ from typing import Any, Callable, Optional
 
 import streamlit as st
 
-date_encoder = lambda obj: obj.isoformat()
-date_decoder = lambda obj: datetime.datetime.fromisoformat(obj)
-time_encoder = lambda obj: obj.strftime("%H:%M:%S")
-time_decoder = lambda obj: datetime.datetime.strptime(obj, "%H:%M:%S").time()
+date_encoder = lambda obj: None if obj is None else obj.isoformat()
+date_decoder = lambda obj: None if obj is None else datetime.datetime.fromisoformat(obj)
+time_encoder = lambda obj: None if obj is None else obj.strftime("%H:%M:%S")
+time_decoder = lambda obj: None if obj is None else datetime.datetime.strptime(obj, "%H:%M:%S").time()
 
 
 class SurveyComponent(ABC):

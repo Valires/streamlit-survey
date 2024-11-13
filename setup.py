@@ -31,6 +31,6 @@ setup(
     name="streamlit_survey",
     packages=find_packages(include=["streamlit_survey", "streamlit_survey.*"]),
     url="https://github.com/OlivierBinette/streamlit_survey",
-    version="1.0.1",
+    version="1.0.2",
     zip_safe=False,
 )

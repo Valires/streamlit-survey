@@ -45,4 +45,4 @@ __all__ = [
 
 __author__ = """Olivier Binette"""
 __email__ = "olivier.binette@gmail.com"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
