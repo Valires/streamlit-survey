@@ -79,10 +79,10 @@ with st.echo(code_location="below"):
 ### Numerical Input
 """
 with st.echo(code_location="below"):
-    st.number_input("Number input:", min_value=0, max_value=100, value=50)
+    survey.number_input("Number input:", min_value=0, max_value=100, value=50)
 
 with st.echo(code_location="below"):
-    st.slider("Slider:", min_value=0, max_value=100, value=50)
+    survey.slider("Slider:", min_value=0, max_value=100, value=50)
 
 """
 ## Current Survey State:
