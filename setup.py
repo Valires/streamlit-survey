@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-
-"""The setup script."""
-
 from setuptools import find_packages, setup
 
 with open("README.rst") as readme_file:
@@ -35,6 +31,6 @@ setup(
     name="streamlit_survey",
     packages=find_packages(include=["streamlit_survey", "streamlit_survey.*"]),
     url="https://github.com/OlivierBinette/streamlit_survey",
-    version="1.0.0",
+    version="1.0.1",
     zip_safe=False,
 )
